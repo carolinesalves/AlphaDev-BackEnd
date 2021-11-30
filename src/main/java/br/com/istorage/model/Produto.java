@@ -34,8 +34,8 @@ public class Produto {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@Column(name = "QUANTIDADE_MINIMA")
-	private Integer quantidadeMinima;
+	@Column(name = "QUANTIDADE")
+	private Integer quantidade;
 
 	public Integer getId() {
 		return id;
@@ -62,11 +62,11 @@ public class Produto {
 	}
 
 	public Integer getQuantidade() {
-		return quantidadeMinima;
+		return quantidade;
 	}
 
-	public void setQuantidade(Integer quantidadeMinima) {
-		this.quantidadeMinima = quantidadeMinima;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 	
 	public Produto toEntity() {
