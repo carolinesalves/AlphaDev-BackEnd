@@ -35,7 +35,7 @@ public class Fornecedor {
 	public String cnpj;
 
 	@Column(name = "INSCRICAO_ESTADUAL")
-	public String inscricaoEsdadual;
+	public String inscricaoEstadual;
 
 	@Column(name = "OBSERVACAO")
 	public String observacao;
@@ -65,11 +65,11 @@ public class Fornecedor {
 	}
 
 	public String getInscricaoEsdadual() {
-		return inscricaoEsdadual;
+		return inscricaoEstadual;
 	}
 
-	public void setInscricaoEsdadual(String inscricaoEsdadual) {
-		this.inscricaoEsdadual = inscricaoEsdadual;
+	public void setInscricaoEsdadual(String inscricaoEstadual) {
+		this.inscricaoEstadual = inscricaoEstadual;
 	}
 
 	public String getObservacao() {
