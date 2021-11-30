@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_PRODUTOS")
 @Entity
 public class Produto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "produto_seq_id")
 	@SequenceGenerator(sequenceName = "produto_seq_id", name = "produto_seq_id", allocationSize = 1)
@@ -68,12 +68,11 @@ public class Produto {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-	
+
 	public Produto toEntity() {
 		ModelMapper modelMapper = new ModelMapper();
 		Produto entity = modelMapper.map(this, Produto.class);
 		return entity;
 	}
-
 
 }
