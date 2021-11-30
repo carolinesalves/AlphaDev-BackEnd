@@ -65,8 +65,8 @@ public class Produto {
 		return quantidadeMinima;
 	}
 
-	public void setQuantidade(Integer quantidade) {
-		this.quantidadeMinima = quantidade;
+	public void setQuantidade(Integer quantidadeMinima) {
+		this.quantidadeMinima = quantidadeMinima;
 	}
 	
 	public Produto toEntity() {
