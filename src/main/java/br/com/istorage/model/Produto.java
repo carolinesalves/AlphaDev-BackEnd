@@ -29,7 +29,7 @@ public class Produto {
 	private int id;
 
 	@Column(name = "NOME")
-	private String nomeProduto;
+	private String nome;
 
 	@Column(name = "DESCRICAO")
 	private String descricao;
@@ -46,11 +46,11 @@ public class Produto {
 	}
 
 	public String getNome() {
-		return nomeProduto;
+		return nome;
 	}
 
-	public void setNome(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
