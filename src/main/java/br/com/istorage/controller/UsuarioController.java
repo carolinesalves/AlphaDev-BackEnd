@@ -56,17 +56,17 @@ public class UsuarioController {
 		return ResponseEntity.ok().body(usuario);
 	}
 
-	   @GetMapping("/validarSenha")
-	    public ResponseEntity<Boolean> validarSenha(@RequestParam String login,
-	                                                @RequestParam String password) {
+	   @GetMapping("/auth")
+	    public ResponseEntity<Boolean> validarSenha(@RequestParam String usuario,
+	                                                @RequestParam String senha) {
 
-	        Optional<Usuario> optUsuario = usuarioRepository.findByUsuario(login);
+	        Optional<Usuario> optUsuario = usuarioRepository.findByUsuario(usuario);
 	        if (optUsuario.isEmpty()) {
 	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
 	        }
 
-	        Usuario usuario = optUsuario.get();
-	        boolean valid = encoder.matches(password, usuario.getSenha());
+	        Usuario user = optUsuario.get();
+	        boolean valid = encoder.matches(senha, user.getSenha());
 
 	        HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
 	        return ResponseEntity.status(status).body(valid);

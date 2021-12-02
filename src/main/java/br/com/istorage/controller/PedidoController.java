@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.istorage.model.Fornecedor;
 import br.com.istorage.model.Pedido;
+import br.com.istorage.model.Produto;
+import br.com.istorage.repository.FornecedorRepository;
+import br.com.istorage.repository.ProdutoRepository;
 import br.com.istorage.service.PedidoService;
 
 @RestController
@@ -22,6 +26,12 @@ public class PedidoController {
 	
 	@Autowired
 	private PedidoService pedidoService;
+	
+	@Autowired
+	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private FornecedorRepository fornecedorRepository;
 	
 	@GetMapping
 	public ResponseEntity<List<Pedido>> findAll(){
@@ -38,8 +48,15 @@ public class PedidoController {
 
 	
 	@PostMapping
-	public ResponseEntity<Pedido> salvarFornecedor(@RequestBody Pedido pedido) {
+	public ResponseEntity<Pedido> salvarPedido(@RequestBody Pedido pedido) {
 		Pedido pedidoSave = this.pedidoService.salvarPedido(pedido);
+	
+		Produto produtoSave = produtoRepository.getById(pedidoSave.getProduto().getId()); 
+		Fornecedor fornecedorSave = fornecedorRepository.getById(pedidoSave.getFornecedor().getId());
+		
+		pedidoSave.setProduto(produtoSave);
+		pedidoSave.setFornecedor(fornecedorSave);
+		
 		return ResponseEntity.ok().body(pedidoSave);
 	}
 
