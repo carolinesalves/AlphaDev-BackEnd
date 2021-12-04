@@ -37,13 +37,18 @@ public class EstoqueController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Estoque> salvarProduto(@RequestBody Estoque estoque) {
+	public ResponseEntity<Estoque> salvarProdutoNoEstoque(@RequestBody Estoque estoque) {
 		Estoque estoqueSave = this.estoqueService.adicionarProduto(estoque);
 		return ResponseEntity.ok().body(estoqueSave);
 	}
 
 	@PatchMapping(value = "{id}")
 	public ResponseEntity<Estoque> atualizarEstoque(@PathVariable int id, @RequestBody Estoque estoque) {
+		
+		Estoque estoqueDesatualizado = this.estoqueService.consultarProdutoId(id);
+		
+		estoque.setQuantidade(estoqueDesatualizado.getQuantidade() - estoque.getQuantidade());
+		
 		Estoque estoqueAtt = this.estoqueService.atualizarProdutos(id, estoque);
 		return ResponseEntity.ok().body(estoqueAtt);
 	}

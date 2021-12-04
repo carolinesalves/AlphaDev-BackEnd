@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,23 +28,16 @@ public class Estoque {
 	@SequenceGenerator(sequenceName = "estoque_seq_id", name = "estoque_seq_id", allocationSize = 1)
 	private Integer id;
 
+	@Column(name = "PRODUTO_ID")
+	private String nomeProduto;
+	
 	@Column(name = "QUANTIDADE")
-	public int quantidade;
+	public Integer quantidade;
 
 	@Column(name = "UNIDADE")
-	public String unidade;
+	public String unidadeMedida;
 
-//	@Column(name = "DATA_VALIDADE")
-//	public Date validade;
-
-	@ManyToOne
-	@JoinColumn(name = "PRODUTO_ID")
-	private Produto produto;
-
-	@ManyToOne
-	@JoinColumn(name = "FORNECEDOR_ID")
-	private Fornecedor fornecedor;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -55,46 +46,30 @@ public class Estoque {
 		this.id = id;
 	}
 
-	public int getQuantidade() {
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
+	}
+
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public String getUnidade() {
-		return unidade;
+	public String getUnidadeMedida() {
+		return unidadeMedida;
 	}
 
-	public void setUnidade(String unidade) {
-		this.unidade = unidade;
+	public void setUnidadeMedida(String unidadeMedida) {
+		this.unidadeMedida = unidadeMedida;
 	}
 
-//	public Date getValidade() {
-//		return validade;
-//	}
-//
-//	public void setValidade(Date validade) {
-//		this.validade = validade;
-//	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
-	
 	public Estoque toEntity() {
 		ModelMapper modelMapper = new ModelMapper();
 		Estoque entity = modelMapper.map(this, Estoque.class);

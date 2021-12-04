@@ -40,10 +40,10 @@ public class EstoqueService {
 		if (obj.isPresent() ) {
 			update = obj.get();
 			
-			update.setFornecedor(estoqueAtt.getFornecedor());
-			update.setProduto(estoqueAtt.getProduto());
+
 			update.setQuantidade(estoqueAtt.getQuantidade());
-			update.setUnidade(estoqueAtt.getUnidade());
+
+
 			
 			update = this.estoqueRepository.save(update);
 			
