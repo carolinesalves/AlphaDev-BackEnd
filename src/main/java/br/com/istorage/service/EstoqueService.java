@@ -39,12 +39,9 @@ public class EstoqueService {
 		
 		if (obj.isPresent() ) {
 			update = obj.get();
+		
 			
-
-			update.setQuantidade(estoqueAtt.getQuantidade());
-
-
-			
+			update.setQuantidade(update.getQuantidade() - estoque.getQuantidade());
 			update = this.estoqueRepository.save(update);
 			
 		}

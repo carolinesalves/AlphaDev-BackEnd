@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.modelmapper.ModelMapper;
 
@@ -19,7 +20,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_PRODUTOS")
+@Table(name = "tb_PRODUTOS",
+uniqueConstraints={@UniqueConstraint(columnNames="NOME")})
 @Entity
 public class Produto {
 

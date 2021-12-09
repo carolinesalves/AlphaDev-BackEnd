@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,7 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.istorage.model.Pedido;
 import br.com.istorage.service.PedidoService;
 
-@RestController
+@Controller
+@CrossOrigin
 @RequestMapping("/pedidos")
 public class PedidoController {
 	
@@ -43,8 +46,8 @@ public class PedidoController {
 		return ResponseEntity.ok().body(pedidoSave);
 	}
 
-	@PatchMapping(value = "{id}")
-	public ResponseEntity<Pedido> atualizarFornecedor(@PathVariable int id, @RequestBody Pedido pedido) {
+	@PatchMapping(value = "/{id}")
+	public ResponseEntity<Pedido> atualizarPedido(@PathVariable int id, @RequestBody Pedido pedido) {
 		Pedido pedidoAtt = this.pedidoService.atualizarPedido(id, pedido);
 		return ResponseEntity.ok().body(pedidoAtt);
 	}

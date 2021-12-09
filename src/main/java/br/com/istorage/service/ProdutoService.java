@@ -41,7 +41,6 @@ public class ProdutoService {
 			update = obj.get();
 
 			update.setNome(produtoAtt.getNome());
-			update.setQuantidade(produtoAtt.getQuantidade());
 			update.setDescricao(produtoAtt.getDescricao());
 		
 			update = this.produtoRepository.save(update);

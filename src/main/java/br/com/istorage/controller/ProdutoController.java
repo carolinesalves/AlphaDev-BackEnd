@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.istorage.model.Estoque;
 import br.com.istorage.model.Produto;
+import br.com.istorage.service.EstoqueService;
 import br.com.istorage.service.ProdutoService;
 
 @Controller
@@ -24,6 +26,9 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
+	
+	@Autowired
+	private EstoqueService estoqueService;
 	
 	@GetMapping
 	public ResponseEntity<List<Produto>> findAll(){
@@ -40,6 +45,13 @@ public class ProdutoController {
 	
 	@PostMapping
 	public ResponseEntity<Produto> salvarProduto(@RequestBody Produto produto) {
+				
+		Estoque estoqueAdd = new Estoque();
+				estoqueAdd.setId(produto.getId());
+				estoqueAdd.setNomeProduto(produto.getNome());
+				estoqueAdd.setQuantidade(0);
+		this.estoqueService.adicionarProduto(estoqueAdd);				
+				
 		Produto produtoSave = this.produtoService.salvarProduto(produto);
 		return ResponseEntity.ok().body(produtoSave);
 	}
