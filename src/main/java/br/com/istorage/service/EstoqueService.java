@@ -47,5 +47,18 @@ public class EstoqueService {
 		}
 		return update;
 	}
+	
+	public Estoque atualizarProdutosInclusao(int id, Estoque estoque) {
+		Estoque estoqueAtt = estoque.toEntity();
+		Optional<Estoque> obj = this.estoqueRepository.findById(id);
+		Estoque update = null;
+		
+		if (obj.isPresent() ) {
+			update = obj.get();
+			update = this.estoqueRepository.save(update);
+			
+		}
+		return update;
+	}
 
 }
