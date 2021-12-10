@@ -49,12 +49,12 @@ public class EstoqueController {
 
 
 	@PatchMapping(value = "/adicionar/{id}")
-	public ResponseEntity<Estoque> adicionarNoEstoque(@PathVariable String id, @RequestBody Pedido pedido) {
+	public ResponseEntity<Estoque> adicionarNoEstoque(@PathVariable int id, @RequestBody Pedido pedido) {
 		
-		int idProdutoEstoque = Integer.parseInt(id);
+		int idProdutoEstoque = id;
 		
 		//1- Busca o produto no estoque
-		Estoque estoque = this.estoqueService.consultarProdutoId(idProdutoEstoque);
+		Estoque estoque = this.estoqueService.consultarProdutoId(pedido.getId());
 		
 		//2- Adiciona os produtos no estoque
 		estoque.setQuantidade(estoque.getQuantidade() + pedido.getQuantidade());
