@@ -54,7 +54,7 @@ public class EstoqueController {
 		int idProdutoEstoque = id;
 		
 		//1- Busca o produto no estoque
-		Estoque estoque = this.estoqueService.consultarProdutoId(pedido.getId());
+		Estoque estoque = this.estoqueService.consultarProdutoId(pedido.getProduto().getId());
 		
 		//2- Adiciona os produtos no estoque
 		estoque.setQuantidade(estoque.getQuantidade() + pedido.getQuantidade());
