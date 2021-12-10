@@ -58,9 +58,10 @@ public class EstoqueController {
 		
 		//2- Adiciona os produtos no estoque
 		estoque.setQuantidade(estoque.getQuantidade() + pedido.getQuantidade());
+		this.estoqueService.atualizarProdutos(idProdutoEstoque, estoque);
 		
 		//3- Deleta o pedido
-		//this.pedidoService.deletarPedido(idProdutoEstoque);
+		this.pedidoService.deletarPedido(idProdutoEstoque);
 		
 		return ResponseEntity.ok().body(estoque);
 	}
