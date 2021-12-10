@@ -49,8 +49,9 @@ public class EstoqueController {
 
 
 	@PatchMapping(value = "/adicionar/{id}")
-	public ResponseEntity<Estoque> adicionarNoEstoque(@PathVariable int id, @RequestBody Pedido pedido) {
-		int idProdutoEstoque = pedido.getProduto().getId();
+	public ResponseEntity<Estoque> adicionarNoEstoque(@PathVariable String id, @RequestBody Pedido pedido) {
+		
+		int idProdutoEstoque = Integer.parseInt(id);;
 		
 		//1- Busca o produto no estoque
 		Estoque estoque = this.estoqueService.consultarProdutoId(idProdutoEstoque);
@@ -59,7 +60,7 @@ public class EstoqueController {
 		estoque.setQuantidade(estoque.getQuantidade() + pedido.getQuantidade());
 		
 		//3- Deleta o pedido
-		this.pedidoService.deletarPedido(id);
+		this.pedidoService.deletarPedido(idProdutoEstoque);
 		
 		return ResponseEntity.ok().body(estoque);
 	}
