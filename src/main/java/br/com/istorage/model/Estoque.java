@@ -28,7 +28,7 @@ public class Estoque {
 	@SequenceGenerator(sequenceName = "estoque_seq_id", name = "estoque_seq_id", allocationSize = 1)
 	private Integer id;
 
-	@Column(name = "nomeProduto")
+	@Column(name = "NOME_PRODUTO")
 	private String nomeProduto;
 	
 	@Column(name = "QUANTIDADE")
