@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.istorage.model.Estoque;
@@ -27,36 +28,35 @@ public class EstoqueService {
 	public List<Estoque> consultarTodosProdutosDoEstoque() {
 		return this.estoqueRepository.findAll();
 	}
-	
+
 	public void deletarProdutoDoEstoque(int id) {
 		this.estoqueRepository.deleteById(id);
 	}
-	
+
 	public Estoque atualizarProdutos(int id, Estoque estoque) {
 		Estoque estoqueAtt = estoque.toEntity();
 		Optional<Estoque> obj = this.estoqueRepository.findById(id);
 		Estoque update = null;
-		
-		if (obj.isPresent() ) {
+
+		if (obj.isPresent()) {
 			update = obj.get();
-		
-			
+
 			update.setQuantidade(update.getQuantidade() - estoque.getQuantidade());
 			update = this.estoqueRepository.save(update);
-			
 		}
+
 		return update;
 	}
-	
+
 	public Estoque atualizarProdutosInclusao(int id, Estoque estoque) {
 		Estoque estoqueAtt = estoque.toEntity();
 		Optional<Estoque> obj = this.estoqueRepository.findById(id);
 		Estoque update = null;
-		
-		if (obj.isPresent() ) {
+
+		if (obj.isPresent()) {
 			update = obj.get();
 			update = this.estoqueRepository.save(update);
-			
+
 		}
 		return update;
 	}
