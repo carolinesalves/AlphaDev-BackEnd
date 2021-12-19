@@ -43,6 +43,7 @@ public class UsuarioService {
 		if (obj.isPresent()) {
 			update = obj.get();
 			update.setNome(usuario.getNome());
+			update.setSobrenome(usuario.getSobrenome());
 			if (usuario.getSenha() != null) {
 				update.setSenha(usuario.getSenha());
 			}
