@@ -15,6 +15,7 @@ public class ProdutoService {
 	@Autowired
 	public ProdutoRepository produtoRepository;
 	
+	
 	public Produto salvarProduto(Produto produto) {
 		Produto newProduto = produto.toEntity();
 		return this.produtoRepository.save(newProduto);
@@ -43,6 +44,7 @@ public class ProdutoService {
 			update.setNome(produtoAtt.getNome());
 			update.setDescricao(produtoAtt.getDescricao());
 			update.setQuantidade(produtoAtt.getQuantidade());
+			
 		
 			update = this.produtoRepository.save(update);
 		}
